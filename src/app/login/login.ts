@@ -1,11 +1,35 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { LoginService } from '../login-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class Login {
+  constructor(private loginService: LoginService, private router: Router) {}
 
+  onSubmit(form: any) {
+    if (form.invalid) return;
+
+    const userData = {
+      name: form.value.name,
+      password: form.value.password
+    };
+
+    this.loginService.authenticateLoginApi(userData).subscribe({
+      next: (response) => {
+        console.log('Response:', response.message);
+        form.resetForm();
+        this.router.navigate(['home']);
+      },
+      error: err => {
+        alert('Login Failed');
+        console.error('Login error:', err);
+      }
+    });
+  }
 }
