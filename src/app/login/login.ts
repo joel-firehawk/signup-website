@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class Login {
   constructor(private loginService: LoginService, private router: Router) {}
 
+  authError = false;
+
   onSubmit(form: any) {
     if (form.invalid) return;
 
@@ -27,7 +29,7 @@ export class Login {
         this.router.navigate(['home']);
       },
       error: err => {
-        alert('Login Failed');
+        this.authError = true;
         console.error('Login error:', err);
       }
     });
