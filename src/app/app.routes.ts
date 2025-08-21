@@ -5,13 +5,13 @@ export const routes: Routes = [
         path: '',
         pathMatch: 'full',
         loadComponent: () => {
-            return import('./login/login').then((m) => m.Login);
+            return import('./home/home').then((m) => m.Home);
         }
     },
     {
-        path: 'home',
+        path: 'login',
         loadComponent: () => {
-            return import('./home/home').then((m) => m.Home);
+            return import('./login/login').then((m) => m.Login);
         }
     }
 ];

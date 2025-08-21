@@ -24,14 +24,18 @@ export class Login {
 
     this.loginService.authenticateLoginApi(userData).subscribe({
       next: (response) => {
-        console.log('Response:', response.message);
+        this.toggleAuth();
         form.resetForm();
-        this.router.navigate(['home']);
+        this.router.navigate(['']);
       },
       error: err => {
         this.authError = true;
         console.error('Login error:', err);
       }
     });
+  }
+
+  toggleAuth() {
+    this.loginService.updateAuthenticationStatus(!this.loginService.isAuthenticated)
   }
 }
