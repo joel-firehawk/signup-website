@@ -7,7 +7,7 @@ import { inject, Injectable } from '@angular/core';
 export class LoginService {
   http = inject(HttpClient);
 
-  authenticateLoginApi(data: { name: string, password: string }) {
+  authenticateLoginApi(data: { email: string, password: string }) {
     const url = `http://localhost:3000/users/login`;
     return this.http.post<{ message: string }>(url, data);
   }

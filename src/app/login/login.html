@@ -2,7 +2,7 @@
 
 <div>
     <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" class="user-form">
-        <label>Name: <input type="text" name="name" ngModel></label>
+        <label>Email: <input type="text" name="email" ngModel></label>
         <label>Password: <input type="text" name="password" ngModel></label>
 
         <button type="submit" [disabled]="userForm.invalid">Login</button>

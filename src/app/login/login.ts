@@ -18,7 +18,7 @@ export class Login {
     if (form.invalid) return;
 
     const userData = {
-      name: form.value.name,
+      email: form.value.email,
       password: form.value.password
     };
 
