@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { User } from './models/user.type';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,9 @@ export class LoginService {
     return this.http.post<{ id: string }>(url, data);
   }
 
-  getUserIdFromApi(email: string) {
-    const url = `http://localhost:3000/user/id`;
-    return this.http.post<{ id: string }>(url, email);
+  getUserFromApi() {
+    const url = `http://localhost:3000/users/${this._userId}`;
+    return this.http.get<{ data: User }>(url);
   }
 
   updateAuthenticationStatus(status: boolean) {

@@ -1,5 +1,7 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { LoginService } from '../login-service';
+import { User } from '../models/user.type';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +9,24 @@ import { LoginService } from '../login-service';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
+export class Home implements OnInit{
   constructor(private loginService: LoginService) {}
+
+  userItem = signal<User>({ id: '', email: ''});
 
   message = computed(() => 
     this.loginService._isAuthenticated ? 'User logged in: ' + this.loginService._userId : 'User not logged in'
   );
+
+  ngOnInit(): void {
+    this.loginService.getUserFromApi().pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    )
+    .subscribe((response : any) => {
+      this.userItem.set(response.data);
+    })
+  }
 }
