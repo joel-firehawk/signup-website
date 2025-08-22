@@ -7,14 +7,24 @@ import { inject, Injectable } from '@angular/core';
 export class LoginService {
   http = inject(HttpClient);
 
-  public isAuthenticated = false;
+  public _isAuthenticated = false;
+  public _userId = '';
 
   authenticateLoginApi(data: { email: string, password: string }) {
     const url = `http://localhost:3000/users/login`;
-    return this.http.post<{ message: string }>(url, data);
+    return this.http.post<{ id: string }>(url, data);
+  }
+
+  getUserIdFromApi(email: string) {
+    const url = `http://localhost:3000/user/id`;
+    return this.http.post<{ id: string }>(url, email);
   }
 
   updateAuthenticationStatus(status: boolean) {
-    this.isAuthenticated = status;
+    this._isAuthenticated = status;
   }
+
+  updateUserId(newId: string) {
+    this._userId = newId;
+  }  
 }

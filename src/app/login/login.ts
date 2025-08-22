@@ -13,6 +13,7 @@ export class Login {
   constructor(private loginService: LoginService, private router: Router) {}
 
   authError = false;
+  newId = '';
 
   onSubmit(form: any) {
     if (form.invalid) return;
@@ -24,7 +25,9 @@ export class Login {
 
     this.loginService.authenticateLoginApi(userData).subscribe({
       next: (response) => {
+        console.log(response.id);
         this.toggleAuth();
+        this.setId(response.id)
         form.resetForm();
         this.router.navigate(['']);
       },
@@ -36,6 +39,10 @@ export class Login {
   }
 
   toggleAuth() {
-    this.loginService.updateAuthenticationStatus(!this.loginService.isAuthenticated)
+    this.loginService.updateAuthenticationStatus(!this.loginService._isAuthenticated);
+  }
+
+  setId(newId: string) {
+    this.loginService.updateUserId(newId);
   }
 }
