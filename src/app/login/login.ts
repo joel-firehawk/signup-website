@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginService } from '../services/login-service';
 import { Router } from '@angular/router';
 import { User } from '../models/user.type';
-import { catchError } from 'rxjs';
+import { catchError, delay, firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class Login {
   authError = false;
   newId = '';
 
-  onSubmit(form: any) {
+  async onSubmit(form: any) {
     if (form.invalid) return;
 
     const userData = {
@@ -26,11 +26,27 @@ export class Login {
     };
 
     this.loginService.authenticateLoginApi(userData).subscribe({
-      next: (response) => {
+      next: async (response) => {
         console.log(response.id);
         this.toggleAuthTrue();
-        this.setId(response.id)
+        this.setId(response.id);
         form.resetForm();
+
+        try {
+          const responseData: any = await firstValueFrom(
+            this.loginService.getUserFromApi().pipe(
+              catchError((err) => {
+                console.log(err);
+                throw err;
+              })
+            )
+          );
+          this.setUser(responseData.data);
+          console.log(responseData.data);
+        } catch (err) {
+          console.error("Error getting user from API", err);
+        }
+
         this.router.navigate(['']);
       },
       error: err => {
@@ -38,16 +54,6 @@ export class Login {
         console.error('Login error:', err);
       }
     });
-
-    this.loginService.getUserFromApi().pipe(
-      catchError((err) => {
-        console.log(err);
-        throw err;
-      })
-    )
-    .subscribe((response : any) => {
-      this.setUser(response.data);
-    })
   }
 
   toggleAuthTrue() {

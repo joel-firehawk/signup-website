@@ -19,14 +19,6 @@ export class Home implements OnInit{
   );
 
   ngOnInit(): void {
-    this.loginService.getUserFromApi().pipe(
-      catchError((err) => {
-        console.log(err);
-        throw err;
-      })
-    )
-    .subscribe((response : any) => {
-      this.userItem.set(response.data);
-    })
+    this.userItem.set(this.loginService._userObject);
   }
 }
