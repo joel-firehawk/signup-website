@@ -10,6 +10,10 @@ export class LoginService {
 
   public _isAuthenticated = false;
   public _userId = '';
+  public _userObject: User = {
+    id: '',
+    email: ''
+  };
 
   authenticateLoginApi(data: { email: string, password: string }) {
     const url = `http://localhost:3000/users/login`;
@@ -27,5 +31,9 @@ export class LoginService {
 
   updateUserId(newId: string) {
     this._userId = newId;
-  }  
+  }
+
+  updateUserObject(newObject: User) {
+    this._userObject = newObject;
+  }
 }

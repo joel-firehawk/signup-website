@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../services/login-service';
 import { Router } from '@angular/router';
+import { User } from '../models/user.type';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +28,7 @@ export class Login {
     this.loginService.authenticateLoginApi(userData).subscribe({
       next: (response) => {
         console.log(response.id);
-        this.toggleAuth();
+        this.toggleAuthTrue();
         this.setId(response.id)
         form.resetForm();
         this.router.navigate(['']);
@@ -36,13 +38,27 @@ export class Login {
         console.error('Login error:', err);
       }
     });
+
+    this.loginService.getUserFromApi().pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    )
+    .subscribe((response : any) => {
+      this.setUser(response.data);
+    })
   }
 
-  toggleAuth() {
-    this.loginService.updateAuthenticationStatus(!this.loginService._isAuthenticated);
+  toggleAuthTrue() {
+    this.loginService.updateAuthenticationStatus(this.loginService._isAuthenticated = true);
   }
 
   setId(newId: string) {
     this.loginService.updateUserId(newId);
+  }
+
+  setUser(newUser: User) {
+    this.loginService.updateUserObject(newUser);
   }
 }
