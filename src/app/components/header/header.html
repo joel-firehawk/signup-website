@@ -12,5 +12,9 @@
         </ul>
     </nav>
 
-    <a>{{ signedInId }}</a>
+    @if (signedInId == 'Log in') {
+        <a routerLink="/login">Log In</a>
+    } @else {
+        <a routerLink="/account-settings">{{ signedInId }}</a>
+    }
 </header>
