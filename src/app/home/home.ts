@@ -1,5 +1,5 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
-import { LoginService } from '../login-service';
+import { LoginService } from '../services/login-service';
 import { User } from '../models/user.type';
 import { catchError } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class Home implements OnInit{
   userItem = signal<User>({ id: '', email: ''});
 
   message = computed(() => 
-    this.loginService._isAuthenticated ? 'User logged in: ' + this.loginService._userId : 'User not logged in'
+    this.loginService._isAuthenticated ? 'User logged in ' : 'User not logged in'
   );
 
   ngOnInit(): void {
