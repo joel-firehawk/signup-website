@@ -1,7 +1,6 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { LoginService } from '../services/user-service';
 import { User } from '../models/user.type';
-import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-home',
