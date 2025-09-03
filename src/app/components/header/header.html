@@ -12,9 +12,11 @@
         </ul>
     </nav>
     
-    @if (signedInEmail == 'Log in') {
-        <a routerLink="/login">Log In</a>
-    } @else {
-        <a routerLink="/account-settings">{{ signedInEmail }}</a>
-    }
+    <div style="margin-right: 50px;">
+        @if (signedInEmail == 'Log in') {
+            <a routerLink="/login">Log In</a>
+        } @else {
+            <a routerLink="/account-settings">{{ signedInEmail }}</a>
+        }
+    </div>
 </header>
