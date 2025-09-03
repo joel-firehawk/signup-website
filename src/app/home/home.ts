@@ -12,7 +12,7 @@ import { catchError } from 'rxjs';
 export class Home implements OnInit{
   constructor(private loginService: LoginService) {}
 
-  userItem = signal<User>({ id: '', email: ''});
+  userItem = signal<User>({ id: '', email: '', name: '' });
 
   message = computed(() => 
     this.loginService._isAuthenticated ? 'User logged in ' : 'User not logged in'

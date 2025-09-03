@@ -12,7 +12,8 @@ export class LoginService {
   public _userId = '';
   public _userObject: User = {
     id: '',
-    email: ''
+    email: '',
+    name: ''
   };
 
   authenticateLoginApi(data: { email: string, password: string }) {
@@ -23,6 +24,11 @@ export class LoginService {
   getUserFromApi() {
     const url = `http://localhost:3000/users/${this._userId}`;
     return this.http.get<{ data: User }>(url);
+  }
+
+  updateUserInfo( data: { name: string }){
+    const url = `http://localhost:3000/users/put/${this._userId}`;
+    return this.http.put(url, data);
   }
 
   updateAuthenticationStatus(status: boolean) {

@@ -2,8 +2,11 @@
 
 <div>
     <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" class="user-form">
-        <label>id: {{ userItem().id }}</label><br>
-        <label>email: <input type="text" name="email" value="{{ userItem().email }}" ngModel></label><br>
+        <label>ID: {{ userItem().id }}</label><br>
+        <label>Email: {{ userItem().email }}</label><br>
+        <label>name: {{ userItem().name }}</label><br>
+
+        <label>Name: <input type="text" name="name" value="{{ userItem().name }}" ngModel></label><br>
 
         <button type="submit" [disabled]="userForm.invalid">Update Account</button>
 

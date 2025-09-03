@@ -16,7 +16,8 @@ export class AccountSettings implements OnInit{
 
   userItem = signal({
     id: '',
-    email: ''
+    email: '',
+    name: ''
   });
 
   authError = false;
@@ -25,8 +26,10 @@ export class AccountSettings implements OnInit{
     if (form.invalid) return;
 
     const userData = {
-      email: form.value.email
-    };    
+      name: form.value.name
+    };
+
+    this.loginService.updateUserInfo(userData);
   }
 
   setUser(newUser: User) {
