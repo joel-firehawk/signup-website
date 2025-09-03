@@ -27,7 +27,7 @@ export class LoginService {
   }
 
   updateUserInfo( data: { name: string }){
-    const url = `http://localhost:3000/users/put/${this._userId}`;
+    const url = `http://localhost:3000/users/${this._userId}`;
     return this.http.put(url, data);
   }
 
