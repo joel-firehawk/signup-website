@@ -42,4 +42,8 @@ export class LoginService {
   updateUserObject(newObject: User) {
     this._userObject = newObject;
   }
+
+  updateUserName(newName: string) {
+    this._userObject.name = newName;
+  }
 }

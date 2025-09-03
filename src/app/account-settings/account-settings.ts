@@ -22,14 +22,18 @@ export class AccountSettings implements OnInit{
 
   authError = false;
 
-  async onSubmit(form: any) {
+  onSubmit(form: any) {
     if (form.invalid) return;
 
     const userData = {
       name: form.value.name
     };
-
-    this.loginService.updateUserInfo(userData);
+    console.log(userData);
+    this.loginService.updateUserInfo(userData).subscribe({
+      next: async () => {
+        this.loginService.updateUserName(userData.name);
+      }
+    });
   }
 
   setUser(newUser: User) {

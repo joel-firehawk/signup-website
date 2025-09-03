@@ -4,17 +4,14 @@
     <nav>
         <ul>
             <li>
-                <a routerLink="/login">Login</a>
-            </li>
-            <li>
                 <a routerLink="/">Home</a>
             </li>
         </ul>
     </nav>
 
-    @if (signedInId == 'Log in') {
+    @if (signedInName == 'Log in') {
         <a routerLink="/login">Log In</a>
     } @else {
-        <a routerLink="/account-settings">{{ signedInId }}</a>
+        <a routerLink="/account-settings">{{ signedInName }}</a>
     }
 </header>

@@ -11,9 +11,9 @@ import { LoginService } from '../../services/login-service';
 export class Header {
   constructor(private loginService: LoginService) {}
 
-  get signedInId() {
+  get signedInName() {
     return this.loginService._isAuthenticated
-      ? this.loginService._userId
+      ? this.loginService._userObject.name
       : 'Log in';
   }
 
