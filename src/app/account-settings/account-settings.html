@@ -1,14 +1,20 @@
 <h2>Account Settings</h2>
 
+<button (click)="toggleEdit()">Edit Account Information</button>
+
+
 <div>
     <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" class="user-form">
         <label>ID: {{ userItem().id }}</label><br>
         <label>Email: {{ userItem().email }}</label><br>
-        <label>name: {{ userItem().name }}</label><br>
 
-        <label>Name: <input type="text" name="name" value="{{ userItem().name }}" ngModel></label><br>
-
-        <button type="submit" [disabled]="userForm.invalid">Update Account</button>
+        @if (isChangeable) {
+            <label>Name: <input type="text" name="name" placeholder="{{ userItem().name }}" ngModel></label><br>
+        } @else {
+            <label>Name: {{ userItem().name }}</label><br>
+        }
+        
+        <button type="submit" (click)="toggleEdit()" [disabled]="userForm.invalid" [hidden]="!isChangeable">Update Account</button>
 
         @if (authError) {
             <p class="error-message">Incorrect Login Details</p>

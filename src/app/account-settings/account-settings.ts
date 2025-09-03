@@ -21,6 +21,11 @@ export class AccountSettings implements OnInit{
   });
 
   authError = false;
+  isChangeable = false;
+
+  toggleEdit() {
+    this.isChangeable = !this.isChangeable;
+  }
 
   onSubmit(form: any) {
     if (form.invalid) return;

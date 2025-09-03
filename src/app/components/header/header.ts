@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LoginService } from '../../services/login-service';
 
@@ -11,11 +11,9 @@ import { LoginService } from '../../services/login-service';
 export class Header {
   constructor(private loginService: LoginService) {}
 
-  get signedInName() {
+  get signedInEmail() {
     return this.loginService._isAuthenticated
-      ? this.loginService._userObject.name
+      ? this.loginService._userObject.email
       : 'Log in';
   }
-
-  
 }

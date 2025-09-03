@@ -8,10 +8,10 @@
             </li>
         </ul>
     </nav>
-
-    @if (signedInName == 'Log in') {
+    
+    @if (signedInEmail == 'Log in') {
         <a routerLink="/login">Log In</a>
     } @else {
-        <a routerLink="/account-settings">{{ signedInName }}</a>
+        <a routerLink="/account-settings">{{ signedInEmail }}</a>
     }
 </header>
