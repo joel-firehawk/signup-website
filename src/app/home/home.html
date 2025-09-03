@@ -1,3 +1,7 @@
 <h2>Home</h2>
 
 <p>{{ message() }}</p>
+
+@if (signedAuthStatus) {
+    <p>Welcome {{ userItem().name }}!</p>
+}

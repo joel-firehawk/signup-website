@@ -14,6 +14,11 @@ export class Home implements OnInit{
 
   userItem = signal<User>({ id: '', email: '', name: '' });
 
+  get signedAuthStatus() {
+    return this.loginService._isAuthenticated
+      ? true : false;
+  }
+
   message = computed(() => 
     this.loginService._isAuthenticated ? 'User logged in ' : 'User not logged in'
   );
