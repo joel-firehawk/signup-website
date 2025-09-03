@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { LoginService } from '../services/login-service';
+import { LoginService } from '../services/user-service';
 import { catchError, firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/user.type';

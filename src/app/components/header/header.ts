@@ -1,6 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LoginService } from '../../services/login-service';
+import { LoginService } from '../../services/user-service';
 
 @Component({
   selector: 'app-header',
