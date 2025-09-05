@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './account-settings.css'
 })
 export class AccountSettings implements OnInit{
-  constructor(private loginService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   userItem = signal({
     id: '',
@@ -34,19 +34,19 @@ export class AccountSettings implements OnInit{
       name: form.value.name
     };
     console.log(userData);
-    this.loginService.updateUserInfo(userData).subscribe({
+    this.userService.updateUserInfo(userData).subscribe({
       next: async () => {
-        this.loginService.updateUserName(userData.name);
+        this.userService.updateUserName(userData.name);
       }
     });
   }
 
   setUser(newUser: User) {
-    this.loginService.updateUserObject(newUser);
+    this.userService.updateUserObject(newUser);
   }
 
   ngOnInit(): void {
-    this.userItem.set(this.loginService._userObject);
+    this.userItem.set(this.userService._userObject);
   }
 }
 

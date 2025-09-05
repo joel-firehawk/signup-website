@@ -12,7 +12,7 @@ import { catchError, delay, firstValueFrom } from 'rxjs';
   styleUrl: './login.css'
 })
 export class Login {
-  constructor(private loginService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   authError = false;
   newId = '';
@@ -25,7 +25,7 @@ export class Login {
       password: form.value.password
     };
 
-    this.loginService.authenticateLoginApi(userData).subscribe({
+    this.userService.authenticateLoginApi(userData).subscribe({
       next: async (response) => {
         console.log(response.id);
         this.toggleAuthTrue();
@@ -34,7 +34,7 @@ export class Login {
 
         try {
           const responseData: any = await firstValueFrom(
-            this.loginService.getUserFromApi().pipe(
+            this.userService.getUserFromApi().pipe(
               catchError((err) => {
                 console.log(err);
                 throw err;
@@ -57,14 +57,14 @@ export class Login {
   }
 
   toggleAuthTrue() {
-    this.loginService.updateAuthenticationStatus(this.loginService._isAuthenticated = true);
+    this.userService.updateAuthenticationStatus(this.userService._isAuthenticated = true);
   }
 
   setId(newId: string) {
-    this.loginService.updateUserId(newId);
+    this.userService.updateUserId(newId);
   }
 
   setUser(newUser: User) {
-    this.loginService.updateUserObject(newUser);
+    this.userService.updateUserObject(newUser);
   }
 }

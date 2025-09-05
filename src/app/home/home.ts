@@ -9,20 +9,20 @@ import { User } from '../models/user.type';
   styleUrl: './home.css'
 })
 export class Home implements OnInit{
-  constructor(private loginService: UserService) {}
+  constructor(private userService: UserService) {}
 
   userItem = signal<User>({ id: '', email: '', name: '' });
 
   get signedAuthStatus() {
-    return this.loginService._isAuthenticated
+    return this.userService._isAuthenticated
       ? true : false;
   }
 
   message = computed(() => 
-    this.loginService._isAuthenticated ? 'User logged in ' : 'User not logged in'
+    this.userService._isAuthenticated ? 'User logged in ' : 'User not logged in'
   );
 
   ngOnInit(): void {
-    this.userItem.set(this.loginService._userObject);
+    this.userItem.set(this.userService._userObject);
   }
 }
