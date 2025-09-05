@@ -1,6 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LoginService } from '../../services/user-service';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +9,11 @@ import { LoginService } from '../../services/user-service';
   styleUrl: './header.css'
 })
 export class Header {
-  constructor(private loginService: LoginService) {}
+  constructor(private userService: UserService) {}
 
   get signedInEmail() {
-    return this.loginService._isAuthenticated
-      ? this.loginService._userObject.email
+    return this.userService._isAuthenticated
+      ? this.userService._userObject.email
       : 'Log in';
   }
 }

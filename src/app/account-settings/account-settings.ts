@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { LoginService } from '../services/user-service';
+import { UserService } from '../services/user-service';
 import { catchError, firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/user.type';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './account-settings.css'
 })
 export class AccountSettings implements OnInit{
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: UserService, private router: Router) {}
 
   userItem = signal({
     id: '',

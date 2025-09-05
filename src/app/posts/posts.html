@@ -1,1 +1,13 @@
-<p>posts works!</p>
+<h2>Posts</h2>
+
+@if (isAuthenticated) {
+    
+    @for (post of postItems(); track $index) {
+        <div class="item-container">
+            <app-post-item [post]="post" />
+        </div>   
+    }        
+
+} @else {
+    <p>not signed in</p>
+}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LoginService } from '../services/user-service';
+import { UserService } from '../services/user-service';
 import { Router } from '@angular/router';
 import { User } from '../models/user.type';
 import { catchError, delay, firstValueFrom } from 'rxjs';
@@ -12,7 +12,7 @@ import { catchError, delay, firstValueFrom } from 'rxjs';
   styleUrl: './login.css'
 })
 export class Login {
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: UserService, private router: Router) {}
 
   authError = false;
   newId = '';

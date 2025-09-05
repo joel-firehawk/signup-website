@@ -1,0 +1,22 @@
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid black;
+    border-left: 0px;
+}
+
+.child {
+    border-left: 1px solid black;
+    padding: 5px;
+}
+
+.image {
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+.image img {
+    width: auto;
+    max-height: 400px;
+}

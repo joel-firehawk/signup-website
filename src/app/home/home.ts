@@ -1,5 +1,5 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
-import { LoginService } from '../services/user-service';
+import { UserService } from '../services/user-service';
 import { User } from '../models/user.type';
 
 @Component({
@@ -9,7 +9,7 @@ import { User } from '../models/user.type';
   styleUrl: './home.css'
 })
 export class Home implements OnInit{
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: UserService) {}
 
   userItem = signal<User>({ id: '', email: '', name: '' });
 

@@ -5,7 +5,7 @@ import { User } from '../models/user.type';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class UserService {
   http = inject(HttpClient);
 
   public _isAuthenticated = false;
