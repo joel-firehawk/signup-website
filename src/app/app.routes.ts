@@ -15,6 +15,12 @@ export const routes: Routes = [
         }
     },
     {
+        path: 'add-post',
+        loadComponent: () => {
+            return import('./add-post/add-post').then((m) => m.AddPost);
+        }
+    },
+    {
         path: 'login',
         loadComponent: () => {
             return import('./login/login').then((m) => m.Login);
