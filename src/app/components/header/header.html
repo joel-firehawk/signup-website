@@ -6,9 +6,12 @@
             <li>
                 <a routerLink="/">Home</a>
             </li>
-            <li>
-                <a routerLink="/posts">Posts</a>
-            </li>
+            
+            @if (authStaus) {
+                <li>
+                    <a routerLink="/posts">Posts</a>
+                </li>    
+            }
         </ul>
     </nav>
     

@@ -1,22 +1,25 @@
+#post-item-container {
+    width: 80%;
+    border: 1px solid black;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .parent {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    border: 1px solid black;
-    border-left: 0px;
+    border-bottom: 1px solid black;
 }
 
 .child {
-    border-left: 1px solid black;
     padding: 5px;
 }
 
 .image {
-    border: 1px solid black;
     text-align: center;
-
 }
 
 .image img {
-    width: auto;
-    max-height: 400px;
+    max-width: 600px;
+    max-height: 600px;
 }

@@ -16,4 +16,8 @@ export class Header {
       ? this.userService._userObject.email
       : 'Log in';
   }
+
+  get authStaus() {
+    return this.userService._isAuthenticated ? true : false;
+  }
 }
